@@ -4,7 +4,7 @@
 include("helper.jl")
 
 # fields are kept in the order they are used in analysis
-immutable modeCouplingAnalysis
+immutable mcAnalysis
 	md::protein
 	R2r::Matrix{Float64}
 	r::Matrix{Float64}
@@ -21,7 +21,7 @@ end
 # ith cloumn is all samples for mode i  
 # nModes = 3* nResidues
 
-function modeCouplingAnalysis(R::Matrix{Float64}, index=1:size(R,2))
+function mcAnalysis(R::Matrix{Float64}, index=1:size(R,2))
 
 	nSamples, nModes = size(R)
 	println("Beginning mode coupling analysis")
@@ -57,18 +57,18 @@ function modeCouplingAnalysis(R::Matrix{Float64}, index=1:size(R,2))
 	println ("Calculating Jensen-Shannon distances...")
 	js = perResidue( jsDist(md.R, Rf1))
 
-	modeCouplingAnalysis(md, R2r, r, coef, rf1, r2R, Rf1, kl, js )
+	mcAnalysis(md, R2r, r, coef, rf1, r2R, Rf1, kl, js )
 end
 
 # high level recall analysis that also handles indexing and normalizing 
-function recall(mcA::modeCouplingAnalysis, targetSet::Vector{Int})
+function recall(mcA::mcAnalysis, targetSet::Vector{Int})
 	normalizedJs= mcA.js ./ mcA.md.stdPerRes
 	predictPerm = sortperm(normalizedJs, rev=true)
 	recall(mcA.md.index[predictPerm], targetSet  )
 end
 
 println ("Making dummy run for JIT compiler...")
-tmp = modeCouplingAnalysis(randn(9,9));
+tmp = mcAnalysis(randn(9,9));
 recall(tmp,[1])
 println ("Ready to roll.")
 

@@ -72,7 +72,7 @@ end
 
 # Returns samples from a Hermite distribution
 
-function sampleHermit(nSamples::Int64, coef::Vector{Float64})
+function sampleHermit(nSamples::Int, coef::Vector{Float64})
 	sample::Float64 = randn()
 	#samples = randn(nSamples)
 
@@ -91,7 +91,7 @@ function sampleHermit(nSamples::Int64, coef::Vector{Float64})
 	return samples
 end
 
-function sampleHermit(nSamples::Int64, coef::Matrix{Float64})
+function sampleHermit(nSamples::Int, coef::Matrix{Float64})
 	nModes = size(coef,2)
 	
 	sample::Float64 = randn()
@@ -119,7 +119,7 @@ end
 
 # Returns x/f!
 
-function divideByFactorial (x::Float64, factorial::Int64)
+function divideByFactorial (x::Float64, factorial::Int)
 	factorial==0 && return x
 	factorial==1 && return x 
 	divideByFactorial(x/factorial, factorial-1)

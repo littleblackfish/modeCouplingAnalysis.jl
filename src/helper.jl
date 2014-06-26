@@ -6,9 +6,6 @@
 include("hermit.jl")
 include("protein.jl")
 
-
-
-
 function R2deltaR (R::Matrix{Float64})
 	R .-= mean(R, 1)
 end
@@ -79,7 +76,7 @@ function klDist(p::Matrix{Float64} , q::Matrix{Float64})
 	end
 end
 
-# returns janson-shannon distance between two samples
+# returns jenson-shannon distance between two samples
 function jsDist(p::Vector{Float64} , q::Vector{Float64})
 
 	nBins = int(sqrt(minimum( [length(p), length(q)] )))

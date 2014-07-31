@@ -6,7 +6,7 @@
 # 0th hermite polynomial is always 1 so it is not passed around
 # degree number of values are returned as an array
 
-function hermit (x::Float64, degree::Int=32)  
+function hermit (x::Float64, degree::Int=64)  
 	Hx = Array(Float64, degree+1)
 	Hx[1:2] = [1. x]
 	for i=3:degree+1

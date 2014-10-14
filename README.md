@@ -41,9 +41,20 @@ p=protein(R);
 or you can optionally provide an index
 
 ```julia
-p=protein(R,index)
+p=protein(R,index);
 ```
 
 where index is a vector of integers that map each carbon apha in the R matrix to an actual residue number in the protein. This feature is very useful when you have shifts and gaps in the protein. 
 
 length(index) should be size(R,2)/3 which is the number of residues in the protein.
+
+this will give you a protein with 
+
+p.R : shifted coordinates with mean=0 for each dof.
+p.mean : mean for each dof. used for shifting
+p.stdPerRes : std dev. for each residue (in cartesian distance)
+p.covariance : covariance matrix for the protein 
+
+I have implemented this in hope that it can also be used for some other analysis other than the mode coupling analysis that we did. 
+
+## `mcAnalysis` type

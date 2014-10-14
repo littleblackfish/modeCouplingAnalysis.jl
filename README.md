@@ -12,7 +12,7 @@ This is a type that keeps a MD trajectory for a protein. Some pre-processing is 
 
 1. Use your preffered MD trajectory tool (I use vmd)
  
-- We will only use alpha carbons (name CA) so you should generate a trimmed down version of your trajectory. This will also result in a much smaller file that is easier to process.
+ - We will only use alpha carbons (name CA) so you should generate a trimmed down version of your trajectory. This will also result in a much smaller file that is easier to process.
   - 
 
 - Use preprocess.awk script included here

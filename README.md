@@ -58,3 +58,5 @@ this will give you a protein with
 I have implemented this in hope that it can also be used for some other analysis other than the mode coupling analysis that we did. 
 
 ## `mcAnalysis` type
+
+This type represents a whole mode-coupling analysis on a `protein`. It is initialized identically as a `protein` (or it can take a protein as an input). 

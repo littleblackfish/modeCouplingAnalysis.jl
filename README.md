@@ -6,5 +6,8 @@ It was designed to provide an infrastructure for possible implementations of oth
 
 # protein type
 
-This is a type that keeps a MD trajectory for a protein.
-Some pre-prossing is necessary on the original trajectory. 
+This is a type that keeps a MD trajectory for a protein. Some pre-processing is necessary on the original trajectory.
+
+## preprocessing of trajectory
+
+Is accomplished by preprocess.awk script

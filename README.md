@@ -4,7 +4,7 @@ This is a julia framework to perform mode coupling analysis as described in [thi
 
 It was designed to provide an infrastructure for possible implementations of other analyses on protein dynamics. 
 
-# protein type
+# `protein` type
 
 This is a type that keeps a MD trajectory for a protein. Some pre-processing is necessary on the original trajectory.
 

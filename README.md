@@ -10,4 +10,8 @@ This is a type that keeps a MD trajectory for a protein. Some pre-processing is 
 
 ## preprocessing of trajectory
 
-Is accomplished by preprocess.awk script
+load your trajectory (using vmd, pymol etc.)
+
+- We will only use alpha carbons (name CA) so you should generate a trimmed down 
+
+- Is accomplished by preprocess.awk script

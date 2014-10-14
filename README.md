@@ -50,10 +50,10 @@ length(index) should be size(R,2)/3 which is the number of residues in the prote
 
 this will give you a protein with 
 
-p.R : shifted coordinates with mean=0 for each dof.
-p.mean : mean for each dof. used for shifting
-p.stdPerRes : std dev. for each residue (in cartesian distance)
-p.covariance : covariance matrix for the protein 
+* p.R : shifted coordinates with mean=0 for each dof.
+* p.mean : mean for each dof. used for shifting
+* p.stdPerRes : std dev. for each residue (in cartesian distance)
+* p.covariance : covariance matrix for the protein 
 
 I have implemented this in hope that it can also be used for some other analysis other than the mode coupling analysis that we did. 
 

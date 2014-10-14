@@ -53,7 +53,7 @@ this will give you a protein with
 * p.R : shifted coordinates with mean=0 for each dof.
 * p.mean : mean for each dof. used for shifting
 * p.stdPerRes : std dev. for each residue (in cartesian distance)
-* p.covariance : covariance matrix for the protein 
+* p.covariance : covariance matrix for the protein  (calculated for p.R)
 
 I have implemented this in hope that it can also be used for some other analysis other than the mode coupling analysis that we did. 
 

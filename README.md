@@ -44,6 +44,6 @@ or you can optionally provide an index
 p=protein(R,index)
 ```
 
-where index is a vector that maps each carbon apha in the R matrix to an actual residue number in the protein. This feature is very useful when you have shifts and gaps in the protein. 
+where index is a vector of integers that map each carbon apha in the R matrix to an actual residue number in the protein. This feature is very useful when you have shifts and gaps in the protein. 
 
 length(index) should be size(R,2)/3 which is the number of residues in the protein.

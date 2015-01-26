@@ -108,6 +108,41 @@ function jsDist(p::Matrix{Float64} , q::Matrix{Float64})
 	end
 end
 
+# returns jenson-shannon distance between a sample and f0
+function jsDist(p::Vector{Float64} )
+
+	nBins = int(sqrt( length(p) ))
+	bins  = linspace(minimum(p), maximum(p), nBins+1 )
+
+	centers = (bins[2:end] + bins[1:end-1])/2
+	meanp = mean(p)
+	varp = var(p)
+
+	pDist = hist(p,bins)[2] / length(p)
+	qDist = exp( (-(centers-meanp).^2) / (2*varp)) / sqrt(2*varp*pi)
+	qDist *= bins[2]-bins[1]
+
+	mDist = (pDist+qDist)/2
+
+	total = 0.
+	for i=1:nBins
+		if pDist[i]>1e-8
+			total += pDist[i] * log(pDist[i]/mDist[i])
+		end
+		if qDist[i]>1e-8
+			total += qDist[i] * log(qDist[i]/mDist[i]) 
+		end
+	end
+	return total/2
+
+end
+
+function jsDist(p::Matrix{Float64})
+	nModes = size(p,2)
+	js = Float64[jsDist(p[:,i]) for i=1:nModes ]
+end
+
+
 # returns rows (frames) with displacement(s) greater than threshold*std
 	
 function findOutliers(data::Matrix{Float64}, threshold=4.0; standard=true)

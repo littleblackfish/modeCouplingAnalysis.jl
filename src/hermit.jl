@@ -80,6 +80,7 @@ function sampleHermit(nSamples::Int, coef::Vector{Float64})
 	samples = Array(Float64, nSamples)
 	dice::Float64   = rand()
 	for i=1:nSamples
+		println(string(i,"/",nSamples))
 		sample = randn()
 		dice   = rand()
 		while dice > probHermit(sample, coef)

@@ -103,6 +103,7 @@ function sampleHermit(nSamples::Int, coef::Matrix{Float64})
 	dice::Float64 = 1.
 
 	for mode=1:nModes
+		println(string(i,"/",nModes));
 		for i=1:nSamples
 			dice   = 1.0
 			while dice > probHermit(sample, coef[:,mode])

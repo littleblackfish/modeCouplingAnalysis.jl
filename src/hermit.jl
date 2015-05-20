@@ -235,3 +235,19 @@ function combination (x1::Int64, x2::Int64)
 	if x1 >= x2
 	return factorial(x1)/factorial(x2)/factorial(x1-x2)
 end
+
+function coef_f2( f2_exp :: Array )
+        
+        # Calculates the f2 coefficients as in Eq. 8
+
+        coef_f2 = f2_exp;
+
+        for i=1:length(f2_exp)
+
+                coef_f2[n,5] = combination(f2_exp[n,2] + f2_exp[n,1], f2_exp[n.1]) * f2_exp[n,5] / factorial(f2_exp[n,2]+ f2_exp[n,1]);
+                
+        end     
+        
+        return coef_f2;
+        
+end 

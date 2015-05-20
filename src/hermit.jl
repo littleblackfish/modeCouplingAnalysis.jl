@@ -229,3 +229,9 @@ function f2_exp ( m1::Vector{Float64}, m2::Vector{Float64}, ind1::Int32 , ind2::
 
 end
 
+function combination (x1::Int64, x2::Int64)
+	
+	# Calculates and returns (x1,x2)
+	if x1 >= x2
+	return factorial(x1)/factorial(x2)/factorial(x1-x2)
+end

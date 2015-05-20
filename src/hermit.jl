@@ -207,14 +207,14 @@ function f2_exp ( m1::Vector{Float64}, m2::Vector{Float64}, ind1::Int32 , ind2::
 
                         n = 1;
 
-                        for i=3:degree
+                        for v=3:degree
 
-                                for j=1:(i-1)
+                                for p=1:(v-1)
 
-                                        HxHy[n,5] += bins[s1,s2] * vec1[i-j] * vec2[j]
-                                        HxHy[n,1] = j;
+                                        HxHy[n,5] += bins[s1,s2] * vec1[v-p] * vec2[p]
+                                        HxHy[n,1] = p;
 
-                                        HxHy[n,2] = i-j;
+                                        HxHy[n,2] = v-p;
 
                                         n += 1;
                                 end

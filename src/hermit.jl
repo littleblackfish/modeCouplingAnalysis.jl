@@ -160,4 +160,72 @@ function dist (X::Matrix{Float64})
 end
 
 
+# Calculates the expectation values for a given pair of modes
+
+function f2_exp ( m1::Vector{Float64}, m2::Vector{Float64}, ind1::Int32 , ind2:: Int32, degree::Int = 32)
+
+
+        bin_number=int(ceil(sqrt(length(m1))));
+
+        combined = hcat(m1,m2);
+
+
+
+        b1, b2, bins = hist2d(combined, linspace(minimum(m1),maximum(m1),bin_number), linspace(minimum(m2), maximum(m2),bin_number))
+
+        # Normalization for a fixed bin base area
+
+        base_area = (b1[2]-b1[1]) * (b2[2]-b2[1]);
+
+        area = 0;
+
+        for i=1:size(bins,1);
+                for j=1:size(bins,2)
+                        area += bins[i,j];
+                end
+        end
+
+        bins /= (area);
+
+
+        HxHy=zeros(495,5);
+
+	# To keep track of the mode indices
+
+        HxHy[:,3] = max(ind1,ind2);
+
+        HxHy[:,4] = min(ind1,ind2);
+        
+        # Main loop
+
+        for s1=1:bin_number-1
+
+                for s2=1:bin_number-1
+
+                        vec1 = modeCouplingAnalysis.hermit(b1[s1]);
+                        vec2 = modeCouplingAnalysis.hermit(b2[s2]);
+
+                        n = 1;
+
+                        for i=3:degree
+
+                                for j=1:(i-1)
+
+                                        HxHy[n,5] += bins[s1,s2] * vec1[i-j] * vec2[j]
+                                        HxHy[n,1] = j;
+
+                                        HxHy[n,2] = i-j;
+
+                                        n += 1;
+                                end
+
+                        end
+
+                end
+
+        end
+
+        return HxHy
+
+end
 

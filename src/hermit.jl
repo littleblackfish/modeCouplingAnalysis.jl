@@ -244,7 +244,7 @@ function coef_f2( f2_exp :: Array )
 
         for i=1:length(f2_exp)
 
-                coef_f2[n,5] = combination(f2_exp[n,2] + f2_exp[n,1], f2_exp[n.1]) * f2_exp[n,5] / factorial(f2_exp[n,2]+ f2_exp[n,1]);
+                coef_f2[n,5] = combination(f2_exp[n,2] + f2_exp[n,1], f2_exp[n.1]) * f2_exp[n,5] ;
                 
         end     
         

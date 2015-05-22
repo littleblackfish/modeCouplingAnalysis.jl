@@ -251,3 +251,72 @@ function coef_f2( f2_exp :: Array )
         return coef_f2;
         
 end 
+
+function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
+
+        include("/home/peptid/.julia/v0.3/modeCouplingAnalysis/src/modeCouplingAnalysis.jl");
+
+
+        nsample, nmodes = size(r);
+
+        degree = size(coeff_one,1);
+
+        sum = 1;
+
+        for i=1:nmodes
+
+                for j=1:nsample
+
+                        xm = hermit(r[j,i]);
+
+                        for l=3:degree
+
+                                sum += coeff_one[l,i] * xm[l];
+
+                        end
+
+                end
+
+        end
+
+        for m1=1:nmodes
+
+                println(string(m1,"/",nmodes))
+
+                for m2=1:nmodes
+
+                        if m1 != m2
+
+                                coeff_two = f2_exp (r[:,m1], r[:,m2], m1, m2);
+
+                                for j=1:nsample
+
+                                        xm1 = hermit(r[j,m1]);
+                                        xm2 = hermit(r[j,m2]);
+
+                                        for l=3:degree
+
+                                                for k=1:(l-1)
+
+                                                        # Find the line containing f2 expectation
+
+                                                        line = find(coeff_two[:,1] .== k && coeff_two[:,2] .== l-k)
+
+                                                        sum += 1/factorial(l) * combination(l,k) * coeff_two[line,5] * xm1[k] * xm2[l-k];
+
+                                                end
+
+                                        end
+
+                                end
+                        end
+
+                end
+
+        end
+
+        f_all = 1/sqrt(2*(pi^nmodes)) * sum;
+
+        return f_all
+
+end

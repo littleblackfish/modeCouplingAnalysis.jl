@@ -255,7 +255,6 @@ end
 
 function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
 
-        include("/home/peptid/.julia/v0.3/modeCouplingAnalysis/src/modeCouplingAnalysis.jl");
 
 
         nsample, nmodes = size(r);

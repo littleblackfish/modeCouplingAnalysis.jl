@@ -162,7 +162,7 @@ end
 
 # Calculates the expectation values for a given pair of modes
 
-function f2_exp ( m1::Vector{Float64}, m2::Vector{Float64}, ind1::Int32 , ind2:: Int32, degree::Int = 32)
+function f2_exp ( m1::Vector{Float64}, m2::Vector{Float64}, ind1::Int64 , ind2::Int64 , degree::Int = 32)
 
 
         bin_number=int(ceil(sqrt(length(m1))));

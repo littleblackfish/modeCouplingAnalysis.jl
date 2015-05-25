@@ -255,6 +255,7 @@ end
 
 function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
 
+        include("/home/peptid/.julia/v0.3/modeCouplingAnalysis/src/modeCouplingAnalysis.jl");
 
 
         nsample, nmodes = size(r);
@@ -267,7 +268,7 @@ function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
 
                 for j=1:nsample
 
-                        xm = hermit(r[j,i]);
+                        xm = modeCouplingAnalysis.hermit(r[j,i]);
 
                         for l=3:degree
 
@@ -291,8 +292,8 @@ function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
 
                                 for j=1:nsample
 
-                                        xm1 = hermit(r[j,m1]);
-                                        xm2 = hermit(r[j,m2]);
+                                        xm1 = modeCouplingAnalysis.hermit(r[j,m1]);
+                                        xm2 = modeCouplingAnalysis.hermit(r[j,m2]);
 
                                         for l=3:degree
 
@@ -300,15 +301,21 @@ function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
 
                                                         # Find the line containing f2 expectation
 
-                                                        line = find(coeff_two[:,1] .== k && coeff_two[:,2] .== l-k)
+                                                        for ind=1:size(coeff_two,1)
+
+                                                                if coeff_two[ind,1] == k && coeff_two[ind,2] == l-k
+                                                                        line = ind;
+                                                                        break
+                                                                end
 
                                                         sum += 1/factorial(l) * combination(l,k) * coeff_two[line,5] * xm1[k] * xm2[l-k];
-
-                                                end
+							
+							end
 
                                         end
 
                                 end
+
                         end
 
                 end

@@ -255,8 +255,6 @@ end
 
 function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
 
-        include("/home/peptid/.julia/v0.3/modeCouplingAnalysis/src/modeCouplingAnalysis.jl");
-
 
         nsample, nmodes = size(r);
 
@@ -311,6 +309,7 @@ function f_all( r::Matrix{Float64}, coeff_one::Matrix{Float64})
                                                         sum += 1/factorial(l) * combination(l,k) * coeff_two[line,5] * xm1[k] * xm2[l-k];
 							
 							end
+						end
 
                                         end
 
